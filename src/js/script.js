@@ -41,14 +41,18 @@
     for(let book of books){
       book.addEventListener('dblclick', function(event){
         event.preventDefault();
-        const bookId = book.getAttribute('data-id');
+          
+        const clickedBook = event.target;
+        const clickedBookParent = clickedBook.offsetParent;
+
+        const bookId = clickedBookParent.getAttribute('data-id');
 
         if(!favoriteBooks.includes(bookId)){
-          book.classList.add(classNames.favorite);
+          clickedBookParent.classList.add(classNames.favorite);
           favoriteBooks.push(bookId);
 
         } else {
-          book.classList.remove(classNames.favorite);
+          clickedBookParent.classList.remove(classNames.favorite);
           favoriteBooks.splice(favoriteBooks.indexOf(bookId), 1);
         }
 
