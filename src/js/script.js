@@ -41,9 +41,16 @@
     for(let book of books){
       book.addEventListener('dblclick', function(event){
         event.preventDefault();
-        book.classList.add(classNames.favorite);
-        const targetBook = book.getAttribute('data-id');
-        favoriteBooks.push(targetBook);
+        const bookId = book.getAttribute('data-id');
+
+        if(!favoriteBooks.includes(bookId)){
+          book.classList.add(classNames.favorite);
+          favoriteBooks.push(bookId);
+
+        } else {
+          book.classList.remove(classNames.favorite);
+          favoriteBooks.splice(favoriteBooks.indexOf(bookId), 1);
+        }
 
         console.log(favoriteBooks);
       });
